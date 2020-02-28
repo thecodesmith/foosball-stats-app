@@ -1,0 +1,3 @@
+rootProject.name = 'foosball-stats-app'
+
+includeBuild 'app-backend'
