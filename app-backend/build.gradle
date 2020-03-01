@@ -12,17 +12,26 @@ configurations {
     developmentOnly
 }
 
+ext {
+    micronautDataVersion = '1.0.0'
+}
+
 dependencies {
     compileOnly platform("io.micronaut:micronaut-bom:$micronautVersion")
     compileOnly 'io.micronaut:micronaut-inject-groovy'
+    compileOnly "io.micronaut.data:micronaut-data-processor:$micronautDataVersion"
 
     implementation platform("io.micronaut:micronaut-bom:$micronautVersion")
     implementation 'io.micronaut:micronaut-runtime-groovy'
     implementation 'io.micronaut:micronaut-validation'
-    implementation 'javax.annotation:javax.annotation-api'
     implementation 'io.micronaut:micronaut-http-server-netty'
     implementation 'io.micronaut:micronaut-http-client'
+    implementation "io.micronaut.data:micronaut-data-hibernate-jpa:$micronautDataVersion"
+    implementation 'javax.annotation:javax.annotation-api'
 
+    runtimeOnly platform("io.micronaut:micronaut-bom:$micronautVersion")
+    runtimeOnly 'io.micronaut.configuration:micronaut-jdbc-hikari'
+    runtimeOnly 'com.h2database:h2'
     runtimeOnly 'ch.qos.logback:logback-classic:1.2.3'
 
     testCompileOnly platform("io.micronaut:micronaut-bom:$micronautVersion")
