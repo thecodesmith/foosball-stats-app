@@ -1,6 +1,20 @@
 micronaut:
   application:
     name: foosball
+  router:
+    static-resources:
+      swagger:
+        paths: classpath:META-INF/swagger
+        mapping: /api/schema/**
+      redoc:
+        paths: classpath:META-INF/swagger/views/redoc
+        mapping: /api/redoc/**
+      rapidoc:
+        paths: classpath:META-INF/swagger/views/rapidoc
+        mapping: /api/rapidoc/**
+      swagger-ui:
+        paths: classpath:META-INF/swagger/views/swagger-ui
+        mapping: /api/swagger-ui/**
 
 ---
 datasources:

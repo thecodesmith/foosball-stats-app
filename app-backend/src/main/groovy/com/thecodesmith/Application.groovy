@@ -1,23 +1,14 @@
 package com.thecodesmith
 
-import com.thecodesmith.foos.controllers.RegionController
-import com.thecodesmith.foos.domain.Color
-import com.thecodesmith.foos.domain.Game
-import com.thecodesmith.foos.domain.Region
-import com.thecodesmith.foos.domain.Side
-import com.thecodesmith.foos.domain.Team
-import com.thecodesmith.foos.domain.User
-import com.thecodesmith.foos.repositories.ColorRepository
-import com.thecodesmith.foos.repositories.GameRepository
-import com.thecodesmith.foos.repositories.RegionRepository
-import com.thecodesmith.foos.repositories.SideRepository
-import com.thecodesmith.foos.repositories.TeamRepository
-import com.thecodesmith.foos.repositories.UserRepository
+import com.thecodesmith.foos.domain.*
+import com.thecodesmith.foos.repositories.*
+import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
 import io.micronaut.context.event.StartupEvent
 import io.micronaut.runtime.Micronaut
-import groovy.transform.CompileStatic
 import io.micronaut.runtime.event.annotation.EventListener
+import io.swagger.v3.oas.annotations.OpenAPIDefinition
+import io.swagger.v3.oas.annotations.info.Info
 
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -25,6 +16,13 @@ import javax.inject.Singleton
 @Slf4j
 @Singleton
 @CompileStatic
+@OpenAPIDefinition(
+        info = @Info(
+                title = 'Foosball Stats App',
+                version = '1.0.0-a.1',
+                description = 'Foosball game tracking and stats'
+        )
+)
 class Application {
 
     static void main(String[] args) {

@@ -12,6 +12,14 @@ configurations {
     developmentOnly
 }
 
+sourceSets {
+    main {
+        groovy {
+            output.dir "$buildDir/classes/groovy/main/META-INF/swagger", builtBy: 'compileGroovy'
+        }
+    }
+}
+
 ext {
     micronautDataVersion = '1.0.0'
 }
@@ -20,6 +28,7 @@ dependencies {
     compileOnly platform("io.micronaut:micronaut-bom:$micronautVersion")
     compileOnly 'io.micronaut:micronaut-inject-groovy'
     compileOnly "io.micronaut.data:micronaut-data-processor:$micronautDataVersion"
+    compileOnly 'io.micronaut.configuration:micronaut-openapi:1.4.0'
 
     implementation platform("io.micronaut:micronaut-bom:$micronautVersion")
     implementation 'io.micronaut:micronaut-runtime-groovy'
@@ -27,6 +36,7 @@ dependencies {
     implementation 'io.micronaut:micronaut-http-server-netty'
     implementation 'io.micronaut:micronaut-http-client'
     implementation "io.micronaut.data:micronaut-data-hibernate-jpa:$micronautDataVersion"
+    implementation 'io.swagger.core.v3:swagger-annotations:1.4.0'
     implementation 'javax.annotation:javax.annotation-api'
 
     runtimeOnly platform("io.micronaut:micronaut-bom:$micronautVersion")
@@ -46,8 +56,9 @@ dependencies {
 test.classpath += configurations.developmentOnly
 
 mainClassName = 'com.thecodesmith.Application'
+
 tasks.withType(GroovyCompile) {
-    groovyOptions.forkOptions.jvmArgs.add('-Dgroovy.parameters=true')
+    groovyOptions.forkOptions.jvmArgs.add '-Dgroovy.parameters=true'
 }
 
 shadowJar {
@@ -56,5 +67,5 @@ shadowJar {
 
 tasks.withType(JavaExec) {
     classpath += configurations.developmentOnly
-    jvmArgs('-noverify', '-XX:TieredStopAtLevel=1', '-Dcom.sun.management.jmxremote')
+    jvmArgs '-noverify', '-XX:TieredStopAtLevel=1', '-Dcom.sun.management.jmxremote'
 }
