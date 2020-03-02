@@ -53,6 +53,10 @@ dependencies {
     testImplementation 'io.micronaut.test:micronaut-test-junit5'
 }
 
+compileGroovy {
+    inputs.file 'openapi.properties'
+}
+
 test.classpath += configurations.developmentOnly
 
 mainClassName = 'com.thecodesmith.Application'
